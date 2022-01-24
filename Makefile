@@ -11,7 +11,7 @@
 # 3. Neither the name of the project nor the names of its contributors
 #    may be used to endorse or promote products derived from this software
 #    without specific prior written permission.
-# 
+#
 # THIS SOFTWARE IS PROVIDED BY THE PROJECT AND CONTRIBUTORS ``AS IS'' AND
 # ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 # IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -29,6 +29,10 @@
 # $KAME: Makefile.in,v 1.45 2005/10/16 16:25:38 suz Exp $
 #
 
+ifeq ($(origin CC),default)
+	CC := $(CROSS_COMPILE)gcc
+endif
+
 prefix=	@prefix@
 srcdir=	@srcdir@
 sysconfdir= @sysconfdir@
@@ -41,7 +45,7 @@ CFLAGS=	@CFLAGS@ @DEFS@ -DSYSCONFDIR=\"${sysconfdir}\" \
 LDFLAGS=@LDFLAGS@
 LIBOBJS=@LIBOBJS@
 LIBS=	@LIBS@ @LEXLIB@
-CC=	@CC@
+#CC=	@CC@
 TARGET=	dhcp6c dhcp6s dhcp6relay dhcp6ctl
 
 INSTALL=@INSTALL@
@@ -79,7 +83,7 @@ cfparse.c y.tab.h: cfparse.y
 
 cftoken.c: cftoken.l y.tab.h
 	@LEX@ cftoken.l
-	mv lex.yy.c $@	
+	mv lex.yy.c $@
 
 getaddrinfo.o:	$(srcdir)/missing/getaddrinfo.c
 	$(CC) -c $(srcdir)/missing/$*.c
