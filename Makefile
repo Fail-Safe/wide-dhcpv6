@@ -29,23 +29,19 @@
 # $KAME: Makefile.in,v 1.45 2005/10/16 16:25:38 suz Exp $
 #
 
-ifeq ($(origin CC),default)
-	CC := $(CROSS_COMPILE)gcc
-endif
+# prefix=	@prefix@
+# srcdir=	@srcdir@
+# sysconfdir= @sysconfdir@
+# localdbdir= @localdbdir@
+# user= @user@
+# group= @group@
 
-prefix=	@prefix@
-srcdir=	@srcdir@
-sysconfdir= @sysconfdir@
-localdbdir= @localdbdir@
-user= @user@
-group= @group@
-
-CFLAGS=	@CFLAGS@ @DEFS@ -DSYSCONFDIR=\"${sysconfdir}\" \
+CC=	gcc
+CFLAGS=	-Os -Wall -DSYSCONFDIR=\"${sysconfdir}\" \
 	-DLOCALDBDIR=\"${localdbdir}\"
-LDFLAGS=@LDFLAGS@
-LIBOBJS=@LIBOBJS@
-LIBS=	@LIBS@ @LEXLIB@
-#CC=	@CC@
+LDFLAGS=
+LIBOBJS=
+LIBS=
 TARGET=	dhcp6c dhcp6s dhcp6relay dhcp6ctl
 
 INSTALL=@INSTALL@
