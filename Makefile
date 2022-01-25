@@ -37,8 +37,9 @@
 # group= @group@
 
 CC=	gcc
-CFLAGS=	-Os -Wall -DSYSCONFDIR=\"${sysconfdir}\" \
-	-DLOCALDBDIR=\"${localdbdir}\"
+CFLAGS=	-Os -Wall
+# CFLAGS=	-Os -Wall -DSYSCONFDIR=\"${sysconfdir}\" \
+# 	-DLOCALDBDIR=\"${localdbdir}\"
 LDFLAGS=
 LIBOBJS=
 LIBS=
